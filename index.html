@@ -88,6 +88,18 @@ p{font-size:18px; line-height:1.9; margin:12px 0;}
   box-shadow: 0 0 20px rgba(255,182,193,0.6);
 }
 
+/* Blooming rose */
+.bloom-rose{
+  position:absolute;
+  font-size:40px;
+  left:50%;
+  top:-60px;
+  transform:translateX(-50%) scale(0);
+  animation:bloom 2s forwards, glowPulse 2s infinite alternate;
+  z-index:20;
+  text-shadow:0 0 10px #ff90b3,0 0 20px #ff4b6e;
+}
+
 /* Letter glow animation */
 .letter-glow{
   animation: glowPulse 2s infinite alternate;
@@ -98,12 +110,19 @@ p{font-size:18px; line-height:1.9; margin:12px 0;}
   100% {box-shadow:0 0 20px rgba(255,182,193,0.6);}
 }
 
+/* Blooming keyframe */
+@keyframes bloom{
+  0%{transform:translateX(-50%) scale(0);}
+  50%{transform:translateX(-50%) scale(1.5);}
+  100%{transform:translateX(-50%) scale(1);}
+}
+
 /* Keyframes */
-@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
-@keyframes beat{0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);}}
-@keyframes fadeIn{0%{opacity:0; transform:scale(0.9);}100%{opacity:1; transform:scale(1);}}
-@keyframes glow{0%,100%{text-shadow:0 0 10px #ff90b3,0 0 20px #ff4b6e;}50%{text-shadow:0 0 20px #ff90b3,0 0 30px #ffb6c1;}}
-@keyframes sparkle{0%,100%{text-shadow:0 0 8px #fff,0 0 12px #ff90b3;}50%{text-shadow:0 0 20px #ff4b6e,0 0 25px #ffb6c1;}}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);} }
+@keyframes beat{0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);} }
+@keyframes fadeIn{0%{opacity:0; transform:scale(0.9);}100%{opacity:1; transform:scale(1);} }
+@keyframes glow{0%,100%{text-shadow:0 0 10px #ff90b3,0 0 20px #ff4b6e;}50%{text-shadow:0 0 20px #ff90b3,0 0 30px #ffb6c1;} }
+@keyframes sparkle{0%,100%{text-shadow:0 0 8px #fff,0 0 12px #ff90b3;}50%{text-shadow:0 0 20px #ff4b6e,0 0 25px #ffb6c1;} }
 @keyframes gradientShift{
   0%{background-position:0% 50%;}
   50%{background-position:100% 50%;}
@@ -115,7 +134,7 @@ p{font-size:18px; line-height:1.9; margin:12px 0;}
 }
 
 .floating{position:fixed; top:-10px; font-size:22px; animation:fall linear infinite; opacity:0.8;}
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg);}}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);} }
 .hidden-msg{display:none; font-size:18px; color:#ffe6f0; margin-top:10px; animation:fadeInMsg 2s ease-in-out forwards;}
 .shootingStar{
   position:fixed;
@@ -150,19 +169,21 @@ p{font-size:18px; line-height:1.9; margin:12px 0;}
   <button class="secret-btn" onclick="revealLetter()">Click here for a secret letter 💌</button>
   <div class="scroll-letter" id="scrollLetter">
     <p>My Dearest Ekta,</p>
-    <p>Every heartbeat whispers your name, and every smile I see from you lights up my world.</p>
-    <p>I wanted to give you this page as a little window into my heart.</p>
-    <p>You are my dream, my love, and my forever. Thank you for being you.</p>
-    <p>Always yours,<br>Jai ❤️</p>
+    <p>Every heartbeat whispers your name, and every smile I see from you lights up my world. 🌹</p>
+    <p>You are my dream, my love, and my forever. 🧸</p>
+    <p>With you, life feels like a beautiful story filled with laughter, hugs, and little “payari” moments. 💖</p>
+    <p>This big rose 🌹 is just a tiny symbol of my love for you, which grows more every day.</p>
+    <p>Thank you for being my sunshine, my cozy teddy, and my everything. 🧸❤️</p>
+    <p>Always yours,<br>Jai 😘</p>
   </div>
 </div>
 
 <script>
-// Floating hearts/roses
+// Floating hearts/roses/teddy
 for(let i=0;i<50;i++){
   let f=document.createElement("div");
   f.className="floating";
-  f.innerHTML = (Math.random()>0.5) ? "❤️" : "🌹";
+  f.innerHTML = ["❤️","🌹","🧸"][Math.floor(Math.random()*3)];
   f.style.left = Math.random()*100+"vw";
   f.style.animationDuration=(4+Math.random()*6)+"s";
   f.style.fontSize=(14+Math.random()*25)+"px";
@@ -170,25 +191,37 @@ for(let i=0;i<50;i++){
 }
 
 // Proposal click
-function showSurprise(){document.getElementById("surprise").style.display="block"; createConfetti();}
+function showSurprise(){
+  document.getElementById("surprise").style.display="block";
+  createConfetti();
+}
 
 // Reveal hidden messages gradually
 setTimeout(()=>{document.getElementById('msg1').style.display='block';},3000);
 setTimeout(()=>{document.getElementById('msg2').style.display='block';},6000);
 setTimeout(()=>{document.getElementById('msg3').style.display='block';},9000);
 
-// Reveal scroll letter with hearts flying in and glow
+// Reveal scroll letter with hearts and blooming rose
 function revealLetter(){
   let letter = document.getElementById('scrollLetter');
+  
+  // Blooming rose
+  let bloom = document.createElement('div');
+  bloom.className='bloom-rose';
+  bloom.innerHTML='🌹';
+  letter.parentElement.appendChild(bloom);
+  setTimeout(()=>{bloom.remove();},3000);
+
+  // Reveal letter
   letter.style.display='block';
   letter.classList.add('letter-glow');
   setTimeout(()=>{letter.style.maxHeight='500px'; letter.style.opacity=1;},50);
 
-  // Flying hearts into letter
+  // Flying hearts/teddy/roses
   let interval = setInterval(()=>{
     let h = document.createElement('div');
     h.className='floating';
-    h.innerHTML = "💖";
+    h.innerHTML = ["💖","🌹","🧸"][Math.floor(Math.random()*3)];
     h.style.left = Math.random()*window.innerWidth+"px";
     h.style.top = '-20px';
     h.style.fontSize=(12+Math.random()*18)+'px';
@@ -201,11 +234,11 @@ function revealLetter(){
   createConfetti(window.innerWidth/2, window.innerHeight/2);
 }
 
-// Mouse-follow hearts
+// Mouse-follow hearts/teddy/roses
 document.addEventListener("mousemove", function(e){
   let h=document.createElement("div");
   h.className="floating";
-  h.innerHTML="❤️";
+  h.innerHTML=["❤️","🌹","🧸"][Math.floor(Math.random()*3)];
   h.style.left=e.clientX+"px";
   h.style.top=e.clientY+"px";
   h.style.fontSize="14px";
@@ -220,11 +253,11 @@ function createConfetti(x=Math.random()*window.innerWidth, y=Math.random()*windo
   for(let i=0;i<10;i++){
     let c=document.createElement("div");
     c.className="floating";
-    c.innerHTML = (Math.random()>0.5) ? "💖" : "🌹";
+    c.innerHTML = ["💖","🌹","🧸"][Math.floor(Math.random()*3)];
     c.style.left = x+"px";
     c.style.top = y+"px";
     c.style.fontSize=(12+Math.random()*18)+"px";
-    c.style.animationDuration=(2+Math.random()*2)+"s";
+    c.style.animationDuration=(2+Math.random()*2)+'s';
     document.body.appendChild(c);
     setTimeout(()=>{c.remove()},2000);
   }
