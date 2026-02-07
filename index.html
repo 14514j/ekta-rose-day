@@ -13,7 +13,6 @@ body {
   justify-content:center;
   align-items:center;
   color:white;
-  /* Animated gradient background */
   background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffecd2, #ff9a9e);
   background-size: 400% 400%;
   animation: gradientShift 20s ease infinite;
@@ -86,6 +85,17 @@ p{font-size:18px; line-height:1.9; margin:12px 0;}
   opacity:0;
   position:relative;
   z-index:5;
+  box-shadow: 0 0 20px rgba(255,182,193,0.6);
+}
+
+/* Letter glow animation */
+.letter-glow{
+  animation: glowPulse 2s infinite alternate;
+}
+@keyframes glowPulse{
+  0% {box-shadow:0 0 20px rgba(255,182,193,0.6);}
+  50% {box-shadow:0 0 40px rgba(255,182,193,1);}
+  100% {box-shadow:0 0 20px rgba(255,182,193,0.6);}
 }
 
 /* Keyframes */
@@ -99,10 +109,24 @@ p{font-size:18px; line-height:1.9; margin:12px 0;}
   50%{background-position:100% 50%;}
   100%{background-position:0% 50%;}
 }
+@keyframes shootingStar{
+  0% {transform:translateX(0) translateY(0) rotate(45deg); opacity:1;}
+  100% {transform:translateX(-600px) translateY(400px) rotate(45deg); opacity:0;}
+}
 
 .floating{position:fixed; top:-10px; font-size:22px; animation:fall linear infinite; opacity:0.8;}
 @keyframes fall{to{transform:translateY(110vh) rotate(360deg);}}
 .hidden-msg{display:none; font-size:18px; color:#ffe6f0; margin-top:10px; animation:fadeInMsg 2s ease-in-out forwards;}
+.shootingStar{
+  position:fixed;
+  width:3px;
+  height:100px;
+  background:white;
+  opacity:0.8;
+  transform:rotate(45deg);
+  pointer-events:none;
+  z-index:15;
+}
 </style>
 </head>
 <body>
@@ -153,10 +177,11 @@ setTimeout(()=>{document.getElementById('msg1').style.display='block';},3000);
 setTimeout(()=>{document.getElementById('msg2').style.display='block';},6000);
 setTimeout(()=>{document.getElementById('msg3').style.display='block';},9000);
 
-// Reveal scroll letter with unfurl and hearts flying in
+// Reveal scroll letter with hearts flying in and glow
 function revealLetter(){
   let letter = document.getElementById('scrollLetter');
   letter.style.display='block';
+  letter.classList.add('letter-glow');
   setTimeout(()=>{letter.style.maxHeight='500px'; letter.style.opacity=1;},50);
 
   // Flying hearts into letter
@@ -171,8 +196,6 @@ function revealLetter(){
     document.body.appendChild(h);
     setTimeout(()=>{h.remove()},4000);
   }, 200);
-
-  // Stop after 5 seconds
   setTimeout(()=>{clearInterval(interval)},5000);
 
   createConfetti(window.innerWidth/2, window.innerHeight/2);
@@ -206,6 +229,18 @@ function createConfetti(x=Math.random()*window.innerWidth, y=Math.random()*windo
     setTimeout(()=>{c.remove()},2000);
   }
 }
+
+// Shooting stars
+function createShootingStar(){
+  let star = document.createElement("div");
+  star.className="shootingStar";
+  star.style.left=Math.random()*window.innerWidth+"px";
+  star.style.top=Math.random()*window.innerHeight/2+"px";
+  document.body.appendChild(star);
+  star.style.animation = `shootingStar 1s linear forwards`;
+  setTimeout(()=>{star.remove()},1000);
+}
+setInterval(createShootingStar, 2000 + Math.random()*2000);
 
 // Soft romantic music
 let audio=document.createElement("audio");
