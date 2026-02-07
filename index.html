@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Ekta ❤️ Jai</title>
+<title>Ekta ❤️ Jai - My Forever</title>
 <style>
+/* 🌹 General Body */
 body{
   margin:0;
   height:100vh;
@@ -15,36 +16,49 @@ body{
   color:white;
   overflow:hidden;
 }
+
+/* 🌹 Card */
 .card{
   background: rgba(0,0,0,0.35);
-  padding:45px;
-  border-radius:30px;
+  padding:50px;
+  border-radius:35px;
   text-align:center;
-  max-width:460px;
-  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+  max-width:480px;
+  box-shadow:0 25px 70px rgba(0,0,0,0.5);
+  position:relative;
   z-index:2;
+  animation:fadeIn 2s ease-in-out;
 }
+
+/* 🌹 Floating Rose */
 .rose{
-  font-size:72px;
+  font-size:80px;
   animation:float 2s infinite ease-in-out;
 }
+
+/* 🌹 Headers & Text */
 h1{
-  font-size:42px;
-  margin:10px 0;
+  font-size:44px;
+  margin:12px 0;
+  color:#ffe6f0;
 }
 p{
   font-size:18px;
   line-height:1.9;
+  margin:12px 0;
 }
 .love{
   font-size:24px;
-  margin-top:15px;
+  margin-top:20px;
   color:#ffd1dc;
+  font-weight:bold;
 }
 .heart{
   animation:beat 1s infinite;
   display:inline-block;
 }
+
+/* 🌹 Keyframes */
 @keyframes float{
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(-14px);}
@@ -54,12 +68,16 @@ p{
   50%{transform:scale(1.25);}
   100%{transform:scale(1);}
 }
+@keyframes fadeIn{
+  0%{opacity:0; transform:scale(0.9);}
+  100%{opacity:1; transform:scale(1);}
+}
 
-/* Falling hearts */
+/* 🌹 Falling Hearts */
 .heart-fall{
   position:fixed;
   top:-10px;
-  font-size:20px;
+  font-size:22px;
   animation:fall linear infinite;
   opacity:0.8;
 }
@@ -68,57 +86,70 @@ p{
     transform:translateY(110vh);
   }
 }
+
+/* 🌹 Glowing effect for proposal */
+.proposal{
+  background: linear-gradient(45deg, #ff90b3, #ff4b6e, #ff90b3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size:22px;
+  font-weight:bold;
+  animation:glow 2s ease-in-out infinite;
+}
+@keyframes glow{
+  0%,100%{text-shadow: 0 0 10px #ff90b3,0 0 20px #ff4b6e;}
+  50%{text-shadow: 0 0 20px #ff90b3,0 0 30px #ff4b6e;}
+}
 </style>
 </head>
 
 <body>
 
+<!-- 🌹 Romantic Card -->
 <div class="card">
   <div class="rose">🌹</div>
-  <h1>Happy Rose Day</h1>
+  <h1>Happy Rose Day, Ekta ❤️</h1>
 
   <p>
-    My love <b>Ekta</b> ❤️<br><br>
-    Agar zindagi mujhe dobara jeene ka mauka de,  
-    toh bhi main har baar  
-    **sirf tumhe hi chunu**.
+    My love <b>Ekta</b>, every moment with you  
+    feels like a dream I never want to wake up from… 💖
   </p>
 
   <p>
-    Tumhari smile meri duniya hai,  
-    tumhara saath meri taqat,  
-    aur tumhara pyaar  
-    meri zindagi ka sabse khoobsurat tohfa 💖
+    Your smile lights up my darkest days,  
+    your voice soothes my soul,  
+    and your love…  
+    is my life’s most beautiful treasure 🌹
   </p>
 
-  <p>
-    Yeh rose ek promise hai —  
-    main har din tumhe aur zyada chahunga,  
-    bina kisi shart ke 🌹
+  <p class="proposal">
+    Will you be mine forever? 💍
   </p>
 
   <p class="love">
-    I Love You Ekta  
-    <span class="heart">❤️</span>
-  </p>
-
-  <p>
-    <b>Will you be mine forever?</b> 💍
+    I Love You Ekta <span class="heart">❤️</span>
   </p>
 
   <p><i>Forever yours — Jai 😘</i></p>
 </div>
 
+<!-- 🌹 Falling Hearts Script -->
 <script>
-for(let i=0;i<20;i++){
+for(let i=0;i<30;i++){
   let h=document.createElement("div");
   h.className="heart-fall";
   h.innerHTML="❤️";
   h.style.left=Math.random()*100+"vw";
   h.style.animationDuration=(3+Math.random()*5)+"s";
+  h.style.fontSize=(16+Math.random()*20)+"px";
   document.body.appendChild(h);
 }
 </script>
+
+<!-- 🎶 Soft Romantic Music -->
+<audio autoplay loop>
+  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
+</audio>
 
 </body>
 </html>
