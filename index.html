@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Ekta ❤️ Jai</title>
+<style>
+body{
+  margin:0;
+  height:100vh;
+  background: radial-gradient(circle at top, #ff4b6e, #ff758c, #ff9a9e);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:'Segoe UI', sans-serif;
+  color:white;
+  overflow:hidden;
+}
+.card{
+  background: rgba(0,0,0,0.35);
+  padding:45px;
+  border-radius:30px;
+  text-align:center;
+  max-width:460px;
+  box-shadow:0 25px 60px rgba(0,0,0,0.5);
+  z-index:2;
+}
+.rose{
+  font-size:72px;
+  animation:float 2s infinite ease-in-out;
+}
+h1{
+  font-size:42px;
+  margin:10px 0;
+}
+p{
+  font-size:18px;
+  line-height:1.9;
+}
+.love{
+  font-size:24px;
+  margin-top:15px;
+  color:#ffd1dc;
+}
+.heart{
+  animation:beat 1s infinite;
+  display:inline-block;
+}
+@keyframes float{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-14px);}
+}
+@keyframes beat{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.25);}
+  100%{transform:scale(1);}
+}
+
+/* Falling hearts */
+.heart-fall{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall linear infinite;
+  opacity:0.8;
+}
+@keyframes fall{
+  to{
+    transform:translateY(110vh);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="rose">🌹</div>
+  <h1>Happy Rose Day</h1>
+
+  <p>
+    My love <b>Ekta</b> ❤️<br><br>
+    Agar zindagi mujhe dobara jeene ka mauka de,  
+    toh bhi main har baar  
+    **sirf tumhe hi chunu**.
+  </p>
+
+  <p>
+    Tumhari smile meri duniya hai,  
+    tumhara saath meri taqat,  
+    aur tumhara pyaar  
+    meri zindagi ka sabse khoobsurat tohfa 💖
+  </p>
+
+  <p>
+    Yeh rose ek promise hai —  
+    main har din tumhe aur zyada chahunga,  
+    bina kisi shart ke 🌹
+  </p>
+
+  <p class="love">
+    I Love You Ekta  
+    <span class="heart">❤️</span>
+  </p>
+
+  <p>
+    <b>Will you be mine forever?</b> 💍
+  </p>
+
+  <p><i>Forever yours — Jai 😘</i></p>
+</div>
+
+<script>
+for(let i=0;i<20;i++){
+  let h=document.createElement("div");
+  h.className="heart-fall";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(h);
+}
+</script>
+
+</body>
+</html>
