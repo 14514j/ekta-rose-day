@@ -4,199 +4,216 @@
 <meta charset="UTF-8">
 <title>Ekta ❤️ Jai - My Forever</title>
 <style>
-/* 🌹 General Body */
-body{
+body {
   margin:0;
   height:100vh;
-  background: radial-gradient(circle at top, #ff4b6e, #ff758c, #ff9a9e);
-  display:flex;
-  align-items:center;
-  justify-content:center;
   font-family:'Segoe UI', sans-serif;
-  color:white;
   overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  /* Animated gradient background */
+  background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #ffecd2, #ff9a9e);
+  background-size: 400% 400%;
+  animation: gradientShift 20s ease infinite;
 }
 
-/* 🌹 Romantic Card */
-.card{
-  background: rgba(0,0,0,0.35);
+/* Card */
+.card {
+  background: rgba(0,0,0,0.45);
   padding:50px;
-  border-radius:35px;
+  border-radius:40px;
+  max-width:520px;
   text-align:center;
-  max-width:500px;
   box-shadow:0 25px 80px rgba(0,0,0,0.6);
+  z-index:10;
   position:relative;
-  z-index:2;
   animation:fadeIn 2s ease-in-out;
 }
 
-/* 🌹 Floating Rose */
+/* Floating Rose */
 .rose{
   font-size:80px;
   animation:float 2s infinite ease-in-out;
+  text-shadow: 0 0 10px #ff90b3, 0 0 20px #ff4b6e;
 }
 
-/* 🌹 Text */
-h1{
-  font-size:46px;
-  margin:12px 0;
-  color:#ffe6f0;
-}
-p{
-  font-size:18px;
-  line-height:1.9;
-  margin:12px 0;
-}
-.love{
-  font-size:24px;
-  margin-top:20px;
-  color:#ffd1dc;
-  font-weight:bold;
-}
-.heart{
-  animation:beat 1s infinite;
-  display:inline-block;
-}
-
-/* 🌹 Proposal Glow */
+/* Text */
+h1{font-size:46px; margin:12px 0; color:#ffe6f0; text-shadow:0 0 8px #fff;}
+p{font-size:18px; line-height:1.9; margin:12px 0;}
+.love{font-size:24px; margin-top:20px; color:#ffd1dc; font-weight:bold;}
+.heart{animation:beat 1s infinite; display:inline-block;}
 .proposal{
   background: linear-gradient(45deg, #ff90b3, #ff4b6e, #ff90b3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
   font-size:24px;
   font-weight:bold;
-  animation:glow 2s ease-in-out infinite;
+  animation:glow 2s ease-in-out infinite, sparkle 3s infinite;
+  cursor:pointer;
 }
 
-/* 🌹 Keyframes */
-@keyframes float{
-  0%,100%{transform:translateY(0);}
-  50%{transform:translateY(-14px);}
-}
-@keyframes beat{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.25);}
-  100%{transform:scale(1);}
-}
-@keyframes fadeIn{
-  0%{opacity:0; transform:scale(0.9);}
-  100%{opacity:1; transform:scale(1);}
-}
-@keyframes glow{
-  0%,100%{text-shadow: 0 0 10px #ff90b3,0 0 20px #ff4b6e;}
-  50%{text-shadow: 0 0 20px #ff90b3,0 0 30px #ff4b6e;}
-}
-
-/* 🌹 Falling Hearts */
-.heart-fall{
-  position:fixed;
-  top:-10px;
-  font-size:22px;
-  animation:fall linear infinite;
-  opacity:0.8;
-}
-@keyframes fall{
-  to{
-    transform:translateY(110vh);
-  }
-}
-
-/* 🌹 Confetti Hearts */
-.confetti{
-  position:fixed;
-  top:-10px;
-  font-size:20px;
-  opacity:0.9;
-  animation:confettiFall linear infinite;
-}
-@keyframes confettiFall{
-  to{
-    transform:translateY(110vh) rotate(360deg);
-  }
-}
-
-/* 🌹 Hidden Love Messages */
-.hidden-msg{
-  display:none;
+/* Secret letter button */
+.secret-btn{
+  margin-top:15px;
+  padding:12px 25px;
   font-size:18px;
+  background: #ff90b3;
+  border:none;
+  border-radius:25px;
+  cursor:pointer;
+  color:white;
+  transition:0.3s;
+}
+.secret-btn:hover{background:#ff4b6e; transform:scale(1.05);}
+
+/* Scroll letter */
+.scroll-letter{
+  display:none;
+  margin-top:20px;
+  background: rgba(255,255,255,0.05);
+  border: 2px solid #ffb6c1;
+  padding:25px;
+  border-radius:25px;
   color:#ffe6f0;
-  margin-top:10px;
-  animation:fadeInMsg 2s ease-in-out forwards;
+  font-family:'Cursive', sans-serif;
+  font-size:18px;
+  line-height:2;
+  max-height:0;
+  overflow:hidden;
+  transition: max-height 5s ease-in-out, opacity 5s ease-in-out;
+  opacity:0;
+  position:relative;
+  z-index:5;
 }
-@keyframes fadeInMsg{
-  0%{opacity:0; transform:translateY(10px);}
-  100%{opacity:1; transform:translateY(0);}
+
+/* Keyframes */
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
+@keyframes beat{0%{transform:scale(1);}50%{transform:scale(1.25);}100%{transform:scale(1);}}
+@keyframes fadeIn{0%{opacity:0; transform:scale(0.9);}100%{opacity:1; transform:scale(1);}}
+@keyframes glow{0%,100%{text-shadow:0 0 10px #ff90b3,0 0 20px #ff4b6e;}50%{text-shadow:0 0 20px #ff90b3,0 0 30px #ffb6c1;}}
+@keyframes sparkle{0%,100%{text-shadow:0 0 8px #fff,0 0 12px #ff90b3;}50%{text-shadow:0 0 20px #ff4b6e,0 0 25px #ffb6c1;}}
+@keyframes gradientShift{
+  0%{background-position:0% 50%;}
+  50%{background-position:100% 50%;}
+  100%{background-position:0% 50%;}
 }
+
+.floating{position:fixed; top:-10px; font-size:22px; animation:fall linear infinite; opacity:0.8;}
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg);}}
+.hidden-msg{display:none; font-size:18px; color:#ffe6f0; margin-top:10px; animation:fadeInMsg 2s ease-in-out forwards;}
 </style>
 </head>
 <body>
 
-<!-- 🌹 Romantic Card -->
 <div class="card">
   <div class="rose">🌹</div>
   <h1>Happy Rose Day, Ekta ❤️</h1>
-
-  <p>
-    My love <b>Ekta</b>, every moment with you  
-    feels like a dream I never want to wake up from… 💖
-  </p>
-
-  <p>
-    Your smile lights up my darkest days,  
-    your voice soothes my soul,  
-    and your love…  
-    is my life’s most beautiful treasure 🌹
-  </p>
-
-  <p class="proposal">
-    Will you be mine forever? 💍
-  </p>
-
-  <p class="love">
-    I Love You Ekta <span class="heart">❤️</span>
-  </p>
-
+  <p>My love <b>Ekta</b>, every moment with you feels like a dream I never want to wake up from… 💖</p>
+  <p>Your smile lights up my darkest days, your voice soothes my soul, and your love is my life’s most beautiful treasure 🌹</p>
+  <p class="proposal" onclick="showSurprise()">Will you be mine forever? 💍</p>
+  <p class="love">I Love You Ekta <span class="heart">❤️</span></p>
   <p><i>Forever yours — Jai 😘</i></p>
 
+  <!-- Hidden messages -->
   <div class="hidden-msg" id="msg1">You are my first thought in the morning… 🌅</div>
   <div class="hidden-msg" id="msg2">…and my last before I sleep 😴</div>
   <div class="hidden-msg" id="msg3">Forever and always, just us ❤️</div>
+  <div class="hidden-msg" id="surprise">💌 YES! I knew you’d say yes! 💌</div>
+
+  <!-- Secret scroll letter -->
+  <button class="secret-btn" onclick="revealLetter()">Click here for a secret letter 💌</button>
+  <div class="scroll-letter" id="scrollLetter">
+    <p>My Dearest Ekta,</p>
+    <p>Every heartbeat whispers your name, and every smile I see from you lights up my world.</p>
+    <p>I wanted to give you this page as a little window into my heart.</p>
+    <p>You are my dream, my love, and my forever. Thank you for being you.</p>
+    <p>Always yours,<br>Jai ❤️</p>
+  </div>
 </div>
 
-<!-- 🌹 Falling Hearts Script -->
 <script>
-// Falling Hearts
-for(let i=0;i<30;i++){
-  let h=document.createElement("div");
-  h.className="heart-fall";
-  h.innerHTML="❤️";
-  h.style.left=Math.random()*100+"vw";
-  h.style.animationDuration=(3+Math.random()*5)+"s";
-  h.style.fontSize=(16+Math.random()*20)+"px";
-  document.body.appendChild(h);
+// Floating hearts/roses
+for(let i=0;i<50;i++){
+  let f=document.createElement("div");
+  f.className="floating";
+  f.innerHTML = (Math.random()>0.5) ? "❤️" : "🌹";
+  f.style.left = Math.random()*100+"vw";
+  f.style.animationDuration=(4+Math.random()*6)+"s";
+  f.style.fontSize=(14+Math.random()*25)+"px";
+  document.body.appendChild(f);
 }
 
-// Confetti Hearts
-for(let i=0;i<20;i++){
-  let c=document.createElement("div");
-  c.className="confetti";
-  c.innerHTML="💖";
-  c.style.left=Math.random()*100+"vw";
-  c.style.animationDuration=(4+Math.random()*4)+"s";
-  c.style.fontSize=(12+Math.random()*15)+"px";
-  document.body.appendChild(c);
-}
+// Proposal click
+function showSurprise(){document.getElementById("surprise").style.display="block"; createConfetti();}
 
-// Reveal Hidden Messages
+// Reveal hidden messages gradually
 setTimeout(()=>{document.getElementById('msg1').style.display='block';},3000);
 setTimeout(()=>{document.getElementById('msg2').style.display='block';},6000);
 setTimeout(()=>{document.getElementById('msg3').style.display='block';},9000);
-</script>
 
-<!-- 🎶 Soft Romantic Music -->
-<audio autoplay loop>
-  <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mpeg">
-</audio>
+// Reveal scroll letter with unfurl and hearts flying in
+function revealLetter(){
+  let letter = document.getElementById('scrollLetter');
+  letter.style.display='block';
+  setTimeout(()=>{letter.style.maxHeight='500px'; letter.style.opacity=1;},50);
+
+  // Flying hearts into letter
+  let interval = setInterval(()=>{
+    let h = document.createElement('div');
+    h.className='floating';
+    h.innerHTML = "💖";
+    h.style.left = Math.random()*window.innerWidth+"px";
+    h.style.top = '-20px';
+    h.style.fontSize=(12+Math.random()*18)+'px';
+    h.style.animationDuration=(3+Math.random()*2)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>{h.remove()},4000);
+  }, 200);
+
+  // Stop after 5 seconds
+  setTimeout(()=>{clearInterval(interval)},5000);
+
+  createConfetti(window.innerWidth/2, window.innerHeight/2);
+}
+
+// Mouse-follow hearts
+document.addEventListener("mousemove", function(e){
+  let h=document.createElement("div");
+  h.className="floating";
+  h.innerHTML="❤️";
+  h.style.left=e.clientX+"px";
+  h.style.top=e.clientY+"px";
+  h.style.fontSize="14px";
+  h.style.animationDuration="2s";
+  document.body.appendChild(h);
+  setTimeout(()=>{h.remove()},2000);
+  createConfetti(e.clientX,e.clientY);
+});
+
+// Confetti
+function createConfetti(x=Math.random()*window.innerWidth, y=Math.random()*window.innerHeight){
+  for(let i=0;i<10;i++){
+    let c=document.createElement("div");
+    c.className="floating";
+    c.innerHTML = (Math.random()>0.5) ? "💖" : "🌹";
+    c.style.left = x+"px";
+    c.style.top = y+"px";
+    c.style.fontSize=(12+Math.random()*18)+"px";
+    c.style.animationDuration=(2+Math.random()*2)+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>{c.remove()},2000);
+  }
+}
+
+// Soft romantic music
+let audio=document.createElement("audio");
+audio.src="https://www.bensound.com/bensound-music/bensound-romantic.mp3";
+audio.autoplay=true;
+audio.loop=true;
+document.body.appendChild(audio);
+</script>
 
 </body>
 </html>
